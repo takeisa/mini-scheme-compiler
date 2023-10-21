@@ -300,3 +300,45 @@ but in a column at least 8 spaces wide."
     ;; (in-env-p 'e env)
     (gen-var 'e env)
     ))
+
+;;
+;; ver1.0
+;; 
+;; MINI-SCHEME-COMPILER> (comp-show '(f (g x)))
+;; comp-lambda: env=(NIL)
+;;         ARGS    0       
+;;         GVAR    X       
+;;         GVAR    G       
+;;         CALL    1       
+;;         GVAR    F       
+;;         CALL    1       
+;;         RETURN  
+;;
+;; MINI-SCHEME-COMPILER> (comp-show '(f (g (h x) (h y))))
+;; comp-lambda: env=(NIL)
+;;         ARGS    0       
+;;         GVAR    X       
+;;         GVAR    H       
+;;         CALL    1       
+;;         GVAR    Y       
+;;         GVAR    H       
+;;         CALL    1       
+;;         GVAR    G       
+;;         CALL    2       
+;;         GVAR    F       
+;;         CALL    1       
+;;         RETURN  
+;;
+;; MINI-SCHEME-COMPILER> (comp-show '(begin "doc" x (f x) y))
+;; comp-lambda: env=(NIL)
+;;         ARGS    0       
+;;         CONST   doc     
+;;         POP     
+;;         GVAR    X       
+;;         POP     
+;;         GVAR    X       
+;;         GVAR    F       
+;;         CALL    1       
+;;         POP     
+;;         GVAR    Y       
+;;         RETURN  
